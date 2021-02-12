@@ -1,6 +1,6 @@
 <template>
   <div v-if="aboutPage">
-    <h1>{{ aboutPage.overskrift }}</h1>
+    <h1 class="mt-5">{{ aboutPage.overskrift }}</h1>
     <img
       class="mt-5"
       id="profileImage"

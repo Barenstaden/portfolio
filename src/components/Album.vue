@@ -2,7 +2,7 @@
   <b-container fluid class="mb-5" v-if="album">
     <b-row>
       <b-col>
-        <h1>{{ album.tittel_album }}</h1>
+        <h1 class="mt-5">{{ album.tittel_album }}</h1>
         <p>{{ album.beskrivelse_album }}</p>
         {{ swiperOptionsGallery.loopedSlides }}
       </b-col>
@@ -42,24 +42,23 @@
     </b-row>
 
     <b-row>
-      <b-col md="12 mt-5">
+      <b-col class="mt-5" md="8" offset-md="2">
         <h2>Alle album</h2>
-      </b-col>
-      <b-col
-        md="4"
-        class="text-left"
-        v-for="album in allAlbums"
-        :key="album.id"
-      >
-        <router-link :to="`/album/${album.tittel_album.toLowerCase()}`">
-          <h3>{{ album.tittel_album }}</h3>
-          <img
-            class="thumbnail"
-            v-for="image in album.bilder"
-            :key="image.id"
-            :src="image.bilde.formats.thumbnail.url"
-          />
-        </router-link>
+        <b-col
+          class="text-left mt-5"
+          v-for="album in allAlbums"
+          :key="album.id"
+        >
+          <router-link :to="`/album/${album.tittel_album.toLowerCase()}`">
+            <h3>{{ album.tittel_album }}</h3>
+            <img
+              class="thumbnail"
+              v-for="image in album.bilder"
+              :key="image.id"
+              :src="image.bilde.formats.thumbnail.url"
+            />
+          </router-link>
+        </b-col>
       </b-col>
     </b-row>
   </b-container>
@@ -122,6 +121,11 @@ export default {
       if ("image" in this.$route.params) {
         this.openImage(this.$route.params.image);
       }
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: "smooth",
+      });
     },
     openImage(imageTitle) {
       const index = this.album.bilder.findIndex(
@@ -147,8 +151,11 @@ export default {
 </script>
 
 <style scoped>
+a {
+  color: #333;
+}
 #mainImage img {
-  height: 50vh;
+  height: 80vh;
 }
 .swiper-pagination >>> .swiper-pagination-bullet {
   opacity: 1;
@@ -179,8 +186,8 @@ img {
 }
 #thumbnails img {
   opacity: 0.4;
-  height: 70px;
-  width: 15%;
+  height: 100px;
+  width: 10%;
 }
 .gallery-thumbs .swiper-slide {
   width: auto;
@@ -191,8 +198,8 @@ img {
   opacity: 1;
 }
 .thumbnail {
-  height: 100px;
+  height: 150px;
   object-fit: cover;
-  width: 33%;
+  width: 20%;
 }
 </style>

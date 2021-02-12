@@ -1,11 +1,17 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Forside</router-link> ·
-      <router-link to="/about">Om</router-link> ·
-      <router-link to="/album">Album</router-link>
+      <div id="home">
+        <router-link to="/">Forside</router-link>
+      </div>
+      <div id="menu">
+        <router-link to="/about">Om</router-link>
+        <router-link to="/album">Album</router-link>
+      </div>
     </div>
-    <router-view />
+    <div id="content">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -16,18 +22,37 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #fafafa;
+  min-height: 100vh;
 }
-
+#content {
+  padding-top: 70px;
+}
 #nav {
-  padding: 30px;
+  height: 70px;
+  padding-top: 15px;
+  position: fixed;
+  background-color: #333;
+  right: 0;
+  left: 0;
+  line-height: 40px;
+}
+#nav #home {
+  position: fixed;
+  left: 20px;
+}
+#nav #menu {
+  right: 0;
+  position: fixed;
 }
 
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  font-size: 22px;
+  color: #fff;
+  margin-right: 20px;
 }
 
-#nav a.router-link-active {
-  color: #42b983;
+#nav a.router-link-exact-active {
+  border-bottom: 2px solid #fff;
 }
 </style>
